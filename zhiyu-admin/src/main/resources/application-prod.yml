@@ -40,7 +40,7 @@ spring:
     port: ${REDISPORT}
     database: 0
     password: ${REDISPASSWORD}
-    timeout: 10
+    timeout: 5000
     jedis:
       pool:
         max-active: 100

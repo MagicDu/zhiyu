@@ -30,7 +30,7 @@
         <hutool.version>5.6.0</hutool.version>
         <bitwalker.version>1.21</bitwalker.version>
         <log4jdbc.version>1.16</log4jdbc.version>
-        <fastjson.version>1.2.68</fastjson.version>
+        <fastjson.version>1.2.78</fastjson.version>
     </properties>
     <dependencies>
         <!-- ******************************************* project base config *************************************-->

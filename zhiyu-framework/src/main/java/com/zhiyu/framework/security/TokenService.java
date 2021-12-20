@@ -66,6 +66,7 @@ public class TokenService {
                 LoginUser user = redisCache.getCacheObject(userKey);
                 return user;
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         return null;
