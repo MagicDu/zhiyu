@@ -1,7 +1,7 @@
 package com.zhiyu.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhiyu.system.entity.SysRole;
+import com.zhiyu.common.core.entity.SysRole;
 import com.zhiyu.system.mapper.SysRoleMapper;
 import com.zhiyu.system.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;

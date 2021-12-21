@@ -1,6 +1,7 @@
 package com.zhiyu.system.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.zhiyu.common.core.entity.SysUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

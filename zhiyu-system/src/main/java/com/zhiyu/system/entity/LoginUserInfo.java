@@ -1,5 +1,6 @@
 package com.zhiyu.system.entity;
 
+import com.zhiyu.common.core.entity.SysUser;
 import lombok.Data;
 
 import java.util.List;

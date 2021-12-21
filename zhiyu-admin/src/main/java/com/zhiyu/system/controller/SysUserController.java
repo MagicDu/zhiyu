@@ -1,8 +1,8 @@
 package com.zhiyu.system.controller;
 
+import com.zhiyu.common.core.entity.SysUser;
 import com.zhiyu.common.utils.ApiResult;
 import com.zhiyu.framework.security.SecurityUtils;
-import com.zhiyu.system.entity.SysUser;
 import com.zhiyu.system.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

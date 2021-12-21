@@ -35,4 +35,5 @@ public class BaseEntity implements Serializable {
     /* 删除标志*/
     private String delFlag;
 
+    private String status;
 }

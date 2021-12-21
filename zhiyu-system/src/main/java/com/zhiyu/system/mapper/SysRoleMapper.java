@@ -1,7 +1,7 @@
 package com.zhiyu.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zhiyu.system.entity.SysRole;
+import com.zhiyu.common.core.entity.SysRole;
 
 import java.util.List;
 

@@ -1,8 +1,7 @@
-package com.zhiyu.system.entity;
+package com.zhiyu.common.core.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.zhiyu.common.core.entity.BaseEntity;
 import lombok.Data;
 
 import java.util.List;
@@ -23,4 +22,6 @@ public class SysUser  extends BaseEntity {
     private String status;
     @TableField(exist = false)
     private List<Long> roleIds;
+    @TableField(exist = false)
+    private List<SysRole> roles;
 }

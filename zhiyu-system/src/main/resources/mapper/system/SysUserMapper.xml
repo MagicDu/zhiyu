@@ -13,7 +13,7 @@
         left join sys_role r on r.role_id = ur.role_id
     </sql>
 
-    <select id="findUserByUserName" resultType="com.zhiyu.system.entity.SysUser">
+    <select id="findUserByUserName" resultType="com.zhiyu.common.core.entity.SysUser">
         <include refid="selectUserVo"/>
         where u.user_name = #{userName}
         and u.del_flag='0'

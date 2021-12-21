@@ -1,7 +1,6 @@
-package com.zhiyu.system.entity;
+package com.zhiyu.common.core.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.zhiyu.common.core.entity.BaseEntity;
 import lombok.Data;
 
 @Data

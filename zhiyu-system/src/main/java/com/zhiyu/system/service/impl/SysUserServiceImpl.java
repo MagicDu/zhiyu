@@ -3,9 +3,9 @@ package com.zhiyu.system.service.impl;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import com.zhiyu.common.core.entity.SysUser;
 import com.zhiyu.common.utils.ApiResult;
 import com.zhiyu.system.entity.LoginUser;
-import com.zhiyu.system.entity.SysUser;
 import com.zhiyu.system.entity.SysUserRole;
 import com.zhiyu.system.mapper.SysUserMapper;
 import com.zhiyu.system.service.SysUserRoleService;
