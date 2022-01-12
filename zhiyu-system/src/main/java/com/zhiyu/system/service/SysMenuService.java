@@ -7,9 +7,10 @@ import com.zhiyu.common.utils.ApiResult;
 import com.zhiyu.system.entity.vo.RouterVo;
 
 import java.util.List;
+import java.util.Set;
 
 public interface SysMenuService extends IService<SysMenu> {
-    List<String> getPermsByUserId(Long userId);
+    Set<String> getPermsByUserId(Long userId);
 
     ApiResult<Boolean> addMenu(SysMenu menu);
 

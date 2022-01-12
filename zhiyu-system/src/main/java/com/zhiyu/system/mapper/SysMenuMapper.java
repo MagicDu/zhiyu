@@ -13,4 +13,6 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
     List<SysMenu> selectMenuList(@Param("menu") SysMenu sysMenu);
 
     List<SysMenu> selectMenuTreeByUserId(Long userId);
+
+    List<SysMenu> selectAllMenuTree();
 }

@@ -24,4 +24,12 @@ public class SysUser  extends BaseEntity {
     private List<Long> roleIds;
     @TableField(exist = false)
     private List<SysRole> roles;
+
+    public boolean isAdmin(){
+        return isAdmin(this.userId);
+    }
+
+    public static boolean isAdmin(Long userId) {
+        return userId != null && 1L == userId;
+    }
 }

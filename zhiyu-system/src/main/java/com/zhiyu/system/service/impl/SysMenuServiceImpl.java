@@ -1,10 +1,12 @@
 package com.zhiyu.system.service.impl;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhiyu.common.constant.Constants;
 import com.zhiyu.common.constant.UserConstants;
 import com.zhiyu.common.core.entity.SysMenu;
+import com.zhiyu.common.core.entity.SysUser;
 import com.zhiyu.common.core.entity.TreeSelect;
 import com.zhiyu.common.utils.ApiResult;
 import com.zhiyu.common.utils.MagicStringUtils;
@@ -16,10 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,8 +27,14 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     private SysMenuMapper menuMapper;
 
     @Override
-    public List<String> getPermsByUserId(Long userId) {
-        return menuMapper.getPermsByUserId(userId);
+    public Set<String> getPermsByUserId(Long userId) {
+        Set<String> perms = new HashSet<String>();
+        if(SysUser.isAdmin(userId)){
+            perms.add("*:*:*");
+        }else{
+            perms.addAll(menuMapper.getPermsByUserId(userId));
+        }
+        return perms;
     }
 
 
@@ -74,7 +79,11 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Override
     public List<SysMenu> selectMenuTreeByUserId(Long userId) {
         List<SysMenu> menus = null;
-        menus = menuMapper.selectMenuTreeByUserId(userId);
+        if(SysUser.isAdmin(userId)){
+            menus=menuMapper.selectAllMenuTree();
+        }else{
+            menus = menuMapper.selectMenuTreeByUserId(userId);
+        }
         return getChildPerms(menus, 0);
     }
 
@@ -104,7 +113,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
             router.setQuery(menu.getQuery());
             router.setMeta(new MetaVo(menu.getMenuName(), menu.getIcon(), StrUtil.equals("1", menu.getIsCache()), menu.getPath()));
             List<SysMenu> cMenus = menu.getChildren();
-            if (!cMenus.isEmpty() && cMenus.size() > 0 && UserConstants.TYPE_DIR.equals(menu.getMenuType())) {
+            if (ObjectUtil.isNotNull(cMenus)&& !cMenus.isEmpty() && cMenus.size() > 0 && UserConstants.TYPE_DIR.equals(menu.getMenuType())) {
                 router.setAlwaysShow(true);
                 router.setRedirect("noRedirect");
                 router.setChildren(buildMenus(cMenus));
