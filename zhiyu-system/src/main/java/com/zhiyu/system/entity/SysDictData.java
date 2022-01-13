@@ -1,11 +1,13 @@
 package com.zhiyu.system.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.zhiyu.common.core.entity.BaseEntity;
 import lombok.Data;
 
 @Data
 public class SysDictData extends BaseEntity {
     /** 字典编码 */
+    @TableId
     private Long dictCode;
 
     /** 字典排序 */
