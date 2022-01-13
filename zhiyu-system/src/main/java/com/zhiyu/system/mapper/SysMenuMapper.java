@@ -10,7 +10,10 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
     List<String> getPermsByUserId(Long userId);
 
+    List<SysMenu> selectMenuListByUserId(@Param("menu") SysMenu sysMenu);
+
     List<SysMenu> selectMenuList(@Param("menu") SysMenu sysMenu);
+
 
     List<SysMenu> selectMenuTreeByUserId(Long userId);
 

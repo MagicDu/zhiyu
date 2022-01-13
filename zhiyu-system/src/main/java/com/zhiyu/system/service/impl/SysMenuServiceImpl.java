@@ -46,7 +46,13 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Override
     public List<SysMenu> selectMenuList(SysMenu sysMenu, Long userId) {
         sysMenu.setUserId(userId);
-        return menuMapper.selectMenuList(sysMenu);
+        List<SysMenu> menus;
+        if (SysUser.isAdmin(userId)) {
+            menus = menuMapper.selectMenuList(sysMenu);
+        }else{
+            menus=menuMapper.selectMenuListByUserId(sysMenu);
+        }
+        return menus;
     }
 
     @Override
