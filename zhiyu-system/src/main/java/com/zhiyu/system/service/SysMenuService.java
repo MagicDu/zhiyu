@@ -25,4 +25,8 @@ public interface SysMenuService extends IService<SysMenu> {
     List<SysMenu> getChildPerms(List<SysMenu> list, int parentId);
 
     List<RouterVo> buildMenus(List<SysMenu> menus);
+
+    boolean hasChildByMenuId(Long id);
+
+    boolean checkMenuExistRole(Long id);
 }

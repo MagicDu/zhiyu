@@ -69,4 +69,8 @@
         order by m.parent_id, m.order_num
     </select>
 
+    <select id="hasChildByMenuId" resultType="int">
+        select  count(*) from sys_menu  where parent_id=#{id}
+    </select>
+
 </mapper>

@@ -13,6 +13,7 @@ import com.zhiyu.common.utils.MagicStringUtils;
 import com.zhiyu.system.entity.vo.MetaVo;
 import com.zhiyu.system.entity.vo.RouterVo;
 import com.zhiyu.system.mapper.SysMenuMapper;
+import com.zhiyu.system.mapper.SysRoleMenuMapper;
 import com.zhiyu.system.service.SysMenuService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ import java.util.stream.Collectors;
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
     @Autowired
     private SysMenuMapper menuMapper;
+    @Autowired
+    private SysRoleMenuMapper roleMenuMapper;
 
     @Override
     public Set<String> getPermsByUserId(Long userId) {
@@ -150,6 +153,18 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
             routers.add(router);
         }
         return routers;
+    }
+
+    @Override
+    public boolean hasChildByMenuId(Long id) {
+        int result = menuMapper.hasChildByMenuId(id);
+        return result > 0;
+    }
+
+    @Override
+    public boolean checkMenuExistRole(Long id) {
+        int result = roleMenuMapper.checkMenuExistRole(id);
+        return result > 0;
     }
 
     /**

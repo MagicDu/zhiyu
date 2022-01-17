@@ -7,10 +7,7 @@ import com.zhiyu.framework.security.SecurityUtils;
 import com.zhiyu.system.entity.query.SysMenuQuery;
 import com.zhiyu.system.service.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,7 +41,21 @@ public class SysMenuController {
         return new ApiResult<>(menuService.saveOrUpdate(menu));
     }
 
+    @GetMapping("/{id}")
+    public ApiResult<SysMenu> getMenu(@PathVariable(name = "id") Long id) {
+        return new ApiResult<>(menuService.getById(id));
+    }
 
 
+    @DeleteMapping ("/{id}")
+    public ApiResult<Boolean> deleteMenu(@PathVariable(name = "id") Long id) {
+        if(menuService.hasChildByMenuId(id)){
+            return new ApiResult<>(false,-1,"存在子菜单，不允许删除");
+        }
+        if(menuService.checkMenuExistRole(id)){
+            return new ApiResult<>(false,-1,"菜单已经分配，不允许删除");
+        }
+        return new ApiResult<>(menuService.removeById(id));
+    }
 
     }
