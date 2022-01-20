@@ -29,4 +29,6 @@ public interface SysMenuService extends IService<SysMenu> {
     boolean hasChildByMenuId(Long id);
 
     boolean checkMenuExistRole(Long id);
+
+    List<SysMenu> selectMenuListByRoleId(Long roleId);
 }

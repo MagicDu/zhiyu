@@ -1,16 +1,24 @@
 package com.zhiyu.common.core.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 @Data
 public class SysRole extends BaseEntity {
     @TableId
-    private Integer roleId;
+    private Long roleId;
     private String roleName;
     private String roleKey;
     private String roleSort;
     private String dataScope;
-    private Integer menuCheckStrictly;
-    private Integer deptCheckStrictly;
+    private boolean menuCheckStrictly;
+    private boolean deptCheckStrictly;
+     /** 菜单组 */
+     @TableField(exist = false)
+    private Long[] menuIds;
+    /** 部门组（数据权限） */
+    @TableField(exist = false)
+    private Long[] deptIds;
+
 }

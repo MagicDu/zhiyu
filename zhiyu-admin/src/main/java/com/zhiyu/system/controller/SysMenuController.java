@@ -9,7 +9,9 @@ import com.zhiyu.system.service.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -19,19 +21,19 @@ public class SysMenuController {
     private SysMenuService menuService;
 
     @PostMapping("/addMenu")
-    public ApiResult<Boolean> addMenu(@RequestBody SysMenu menu){
-        return  menuService.addMenu(menu);
+    public ApiResult<Boolean> addMenu(@RequestBody SysMenu menu) {
+        return menuService.addMenu(menu);
     }
 
 
-    @PostMapping("/treeselect")
-    public ApiResult<List<TreeSelect>> treeSelect(){
-        List<SysMenu> menuList= menuService.selectMenuList(new SysMenu(),SecurityUtils.getUserId());
+    @GetMapping("/treeselect")
+    public ApiResult<List<TreeSelect>> treeSelect() {
+        List<SysMenu> menuList = menuService.selectMenuList(new SysMenu(), SecurityUtils.getUserId());
         return new ApiResult<>(menuService.buildMenuTreeSelect(menuList));
     }
 
     @PostMapping("/list")
-    public ApiResult<List<SysMenu>> list(@RequestBody SysMenu query){
+    public ApiResult<List<SysMenu>> list(@RequestBody SysMenu query) {
         List<SysMenu> menus = menuService.selectMenuList(query, SecurityUtils.getUserId());
         return new ApiResult<>(menus);
     }
@@ -47,15 +49,24 @@ public class SysMenuController {
     }
 
 
-    @DeleteMapping ("/{id}")
+    @DeleteMapping("/{id}")
     public ApiResult<Boolean> deleteMenu(@PathVariable(name = "id") Long id) {
-        if(menuService.hasChildByMenuId(id)){
-            return new ApiResult<>(false,-1,"存在子菜单，不允许删除");
+        if (menuService.hasChildByMenuId(id)) {
+            return new ApiResult<>(false, -1, "存在子菜单，不允许删除");
         }
-        if(menuService.checkMenuExistRole(id)){
-            return new ApiResult<>(false,-1,"菜单已经分配，不允许删除");
+        if (menuService.checkMenuExistRole(id)) {
+            return new ApiResult<>(false, -1, "菜单已经分配，不允许删除");
         }
         return new ApiResult<>(menuService.removeById(id));
     }
 
+    @GetMapping(value = "/roleMenuTreeselect/{roleId}")
+    public ApiResult<Map<String,Object>> roleMenuTreeselect(@PathVariable("roleId") Long roleId){
+        Map<String,Object> result=new HashMap<>();
+        List<SysMenu> menus = menuService.selectMenuList(new SysMenu(),SecurityUtils.getUserId());
+        result.put("menus",menuService.buildMenuTreeSelect(menus));
+        result.put("checkedKeys",menuService.selectMenuListByRoleId(roleId));
+        return new ApiResult<>(result);
     }
+}
+

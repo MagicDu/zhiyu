@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -25,7 +26,7 @@ public class SysMenu extends BaseEntity {
     private String perms;
     private String icon;
     @TableField(exist = false)
-    private List<SysMenu> children;
+    private List<SysMenu> children=new ArrayList<>();
     @TableField(exist = false)
     private Long userId;
 }

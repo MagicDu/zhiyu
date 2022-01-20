@@ -20,4 +20,6 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
     List<SysMenu> selectAllMenuTree();
 
     int hasChildByMenuId(Long id);
+
+    List<SysMenu> selectMenuListByRoleId(@Param("roleId") Long roleId,@Param("menuCheckStrictly") boolean menuCheckStrictly);
 }

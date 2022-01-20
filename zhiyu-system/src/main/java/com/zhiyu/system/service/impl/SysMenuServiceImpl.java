@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhiyu.common.constant.Constants;
 import com.zhiyu.common.constant.UserConstants;
 import com.zhiyu.common.core.entity.SysMenu;
+import com.zhiyu.common.core.entity.SysRole;
 import com.zhiyu.common.core.entity.SysUser;
 import com.zhiyu.common.core.entity.TreeSelect;
 import com.zhiyu.common.utils.ApiResult;
@@ -13,6 +14,7 @@ import com.zhiyu.common.utils.MagicStringUtils;
 import com.zhiyu.system.entity.vo.MetaVo;
 import com.zhiyu.system.entity.vo.RouterVo;
 import com.zhiyu.system.mapper.SysMenuMapper;
+import com.zhiyu.system.mapper.SysRoleMapper;
 import com.zhiyu.system.mapper.SysRoleMenuMapper;
 import com.zhiyu.system.service.SysMenuService;
 import org.apache.commons.lang3.StringUtils;
@@ -28,6 +30,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     private SysMenuMapper menuMapper;
     @Autowired
     private SysRoleMenuMapper roleMenuMapper;
+    @Autowired
+    private SysRoleMapper sysRoleMapper;
 
     @Override
     public Set<String> getPermsByUserId(Long userId) {
@@ -165,6 +169,12 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     public boolean checkMenuExistRole(Long id) {
         int result = roleMenuMapper.checkMenuExistRole(id);
         return result > 0;
+    }
+
+    @Override
+    public List<SysMenu> selectMenuListByRoleId(Long roleId) {
+        SysRole role = sysRoleMapper.selectById(roleId);
+        return menuMapper.selectMenuListByRoleId(roleId,role.isMenuCheckStrictly());
     }
 
     /**
