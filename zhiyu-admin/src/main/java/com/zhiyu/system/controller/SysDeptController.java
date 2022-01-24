@@ -2,6 +2,7 @@ package com.zhiyu.system.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zhiyu.common.core.entity.SysDept;
+import com.zhiyu.common.core.entity.TreeSelect;
 import com.zhiyu.common.utils.ApiResult;
 import com.zhiyu.system.entity.query.SysDeptQuery;
 import com.zhiyu.system.service.SysDeptService;
@@ -44,5 +45,11 @@ public class SysDeptController {
         return sysDeptService.removeDepts(deptIds);
     }
 
+
+    @GetMapping("/treeselect")
+    public ApiResult<List<TreeSelect>> treeselect(SysDept dept){
+        List<SysDept> depts = sysDeptService.selectDeptList(dept);
+        return new ApiResult<>(sysDeptService.buildDeptTreeSelect(depts));
+    }
 
 }

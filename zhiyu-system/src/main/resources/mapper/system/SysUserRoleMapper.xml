@@ -6,4 +6,7 @@
         <select id="countUserRoleByRoleId" resultType="int">
             select count(1) from sys_user_role where role_id=#{roleId}
         </select>
+        <delete id="deleteUserRoleByUserId">
+            delete from sys_user_role where user_id=#{userId}
+        </delete>
 </mapper>

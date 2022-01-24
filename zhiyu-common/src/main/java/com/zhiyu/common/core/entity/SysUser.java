@@ -24,6 +24,8 @@ public class SysUser  extends BaseEntity {
     private List<Long> roleIds;
     @TableField(exist = false)
     private List<SysRole> roles;
+    @TableField(exist = false)
+    private SysDept dept;
 
     public boolean isAdmin(){
         return isAdmin(this.userId);

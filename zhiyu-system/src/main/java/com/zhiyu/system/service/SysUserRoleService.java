@@ -6,4 +6,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface SysUserRoleService extends IService<SysUserRole> {
+    boolean deleteUserRoleByUserId(Long userId);
 }

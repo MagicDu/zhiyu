@@ -5,4 +5,6 @@ import com.zhiyu.system.entity.SysUserRole;
 
 public interface SysUserRoleMapper extends BaseMapper<SysUserRole> {
     int countUserRoleByRoleId(Long roleId);
+
+    int deleteUserRoleByUserId(Long userId);
 }

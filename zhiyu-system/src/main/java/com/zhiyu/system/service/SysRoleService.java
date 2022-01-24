@@ -24,4 +24,5 @@ public interface SysRoleService extends IService<SysRole> {
     ApiResult<Boolean> removeRoles(List<Long> roleIds);
 
     int  countUserRoleByRoleId(Long roleId);
+
 }

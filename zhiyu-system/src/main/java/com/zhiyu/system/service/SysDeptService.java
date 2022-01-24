@@ -3,6 +3,7 @@ package com.zhiyu.system.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhiyu.common.core.entity.SysDept;
+import com.zhiyu.common.core.entity.TreeSelect;
 import com.zhiyu.common.utils.ApiResult;
 import com.zhiyu.system.entity.query.SysDeptQuery;
 
@@ -19,4 +20,9 @@ public interface SysDeptService extends IService<SysDept> {
 
     Boolean hasPeopleByDeptId(Long deptId);
 
+    List<SysDept> selectDeptList(SysDept dept);
+
+    List<TreeSelect> buildDeptTreeSelect(List<SysDept> depts);
+
+    List<SysDept> buildDeptTree(List<SysDept> depts);
 }
