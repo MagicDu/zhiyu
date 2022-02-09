@@ -3,14 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-       <artifactId>zhiyu</artifactId>
+        <artifactId>zhiyu</artifactId>
         <groupId>com.zhiyu</groupId>
         <version>1.0.0</version>
     </parent>
-    <artifactId>zhiyu-admin</artifactId>
+    <artifactId>zhiyu-generator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ZhiYu-admin</name>
-    <description>web 入口</description>
+    <name>gen</name>
+    <description>generator</description>
     <packaging>jar</packaging>
     <properties>
         <java.version>1.8</java.version>
@@ -18,20 +18,20 @@
     <dependencies>
         <dependency>
             <groupId>com.zhiyu</groupId>
-            <artifactId>zhiyu-framework</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.zhiyu</groupId>
             <artifactId>zhiyu-common</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.zhiyu</groupId>
-            <artifactId>zhiyu-generator</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <artifactId>zhiyu-framework</artifactId>
+            <version>1.0.0</version>
         </dependency>
-
+        <!--velocity代码生成使用模板 -->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+            <version>2.3</version>
+        </dependency>
     </dependencies>
 
     <build>
