@@ -5,7 +5,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhiyu.system.entity.SysDictType;
 import com.zhiyu.system.entity.query.SysDictTypeQuery;
 
+import java.util.List;
+
 public interface SysDictTypeService extends IService<SysDictType> {
     IPage<SysDictType> pageQuery(SysDictTypeQuery query);
     String checkDictTypeUnique(SysDictType sysDictType);
+    List<SysDictType> selectDictTypeAll();
 }

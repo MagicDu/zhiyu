@@ -11,6 +11,8 @@ import com.zhiyu.system.mapper.SysDictTypeMapper;
 import com.zhiyu.system.service.SysDictTypeService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SysDictTypeServiceImpl extends ServiceImpl<SysDictTypeMapper,SysDictType> implements SysDictTypeService {
 
@@ -28,6 +30,11 @@ public class SysDictTypeServiceImpl extends ServiceImpl<SysDictTypeMapper,SysDic
             return UserConstants.NOT_UNIQUE;
         }
         return UserConstants.UNIQUE;
+    }
+
+    @Override
+    public List<SysDictType> selectDictTypeAll() {
+        return baseMapper.selectDictTypeAll();
     }
 }
 

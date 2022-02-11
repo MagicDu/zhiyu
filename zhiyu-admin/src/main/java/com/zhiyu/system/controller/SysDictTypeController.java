@@ -69,4 +69,14 @@ public class SysDictTypeController {
     }
 
 
+    /**
+     * 获取字典选择框列表
+     */
+    @GetMapping("/optionselect")
+    public ApiResult<List<SysDictType>> optionselect() {
+        List<SysDictType> dictTypes = sysDictTypeService.selectDictTypeAll();
+        return new ApiResult<>(dictTypes);
+    }
+
+
 }

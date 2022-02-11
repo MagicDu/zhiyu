@@ -100,7 +100,6 @@ public class GenController {
     /**
      * 删除代码生成
      */
-    @PreAuthorize("@ss.hasPermi('tool:gen:remove')")
     @DeleteMapping("/{tableIds}")
     public ApiResult<Boolean> remove(@PathVariable Long[] tableIds) {
         genTableService.deleteGenTableByIds(tableIds);
@@ -110,7 +109,6 @@ public class GenController {
     /**
      * 预览代码
      */
-    @PreAuthorize("@ss.hasPermi('tool:gen:preview')")
     @GetMapping("/preview/{tableId}")
     public ApiResult<Map<String, String>> preview(@PathVariable("tableId") Long tableId) throws IOException {
         Map<String, String> dataMap = genTableService.previewCode(tableId);
@@ -138,7 +136,6 @@ public class GenController {
     /**
      * 同步数据库
      */
-    @PreAuthorize("@ss.hasPermi('tool:gen:edit')")
     @GetMapping("/synchDb/{tableName}")
     public ApiResult<Boolean> synchDb(@PathVariable("tableName") String tableName) {
         genTableService.synchDb(tableName);
@@ -148,7 +145,6 @@ public class GenController {
     /**
      * 批量生成代码
      */
-    @PreAuthorize("@ss.hasPermi('tool:gen:code')")
     @GetMapping("/batchGenCode")
     public void batchGenCode(HttpServletResponse response, String tables) throws IOException {
         String[] tableNames = Convert.toStrArray(tables);
@@ -169,3 +165,4 @@ public class GenController {
         IOUtils.write(data, response.getOutputStream());
     }
 }
+

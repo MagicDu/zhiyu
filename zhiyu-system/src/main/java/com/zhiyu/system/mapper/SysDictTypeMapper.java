@@ -6,8 +6,12 @@ import com.zhiyu.system.entity.SysDictType;
 import com.zhiyu.system.entity.query.SysDictTypeQuery;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface SysDictTypeMapper extends BaseMapper<SysDictType> {
     IPage<SysDictType> pageQuery(IPage<SysDictType> page, @Param("query") SysDictTypeQuery query);
 
     SysDictType checkDictTypeUnique(String dictType);
+
+    List<SysDictType> selectDictTypeAll();
 }
