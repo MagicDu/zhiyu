@@ -1,0 +1,39 @@
+package ${packageName}.entity;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+import lombok.experimental.Accessors;
+import com.zhiyu.common.core.entity.BaseEntity;
+import java.io.Serializable;
+import java.util.Date;
+
+
+
+/**
+ * ${functionName}对象 ${tableName}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+@Accessors(chain = true)
+public class ${ClassName} extends BaseEntity {
+    private static final long serialVersionUID = 1L;
+
+
+
+    #foreach ($column in ${columns})
+        #if($!column.isPK ==1)
+        @TableId
+        private $column.javaType $column.javaField;
+        #end
+        #if($!column.isPK !=1)
+    /**
+     * $!{column.columnComment}
+     */
+     private $column.javaType $column.javaField;
+        #end
+    #end
+
+}

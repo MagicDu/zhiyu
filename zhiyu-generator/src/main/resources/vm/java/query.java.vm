@@ -1,0 +1,24 @@
+package ${packageName}.query;
+
+import ${packageName}.${className};
+import com.zhiyu.common.core.entity.BasePageInfo;
+import lombok.Data;
+import java.util.Date;
+
+
+
+
+/**
+ * @author $author
+ */
+@Data
+public class ${className}Query extends  BasePageInfo<${className}> {
+
+    #foreach ($column in ${columns})
+    /**
+     * $!{column.columnComment}
+     */
+    private $column.javaType $column.javaField;
+    #end
+
+}

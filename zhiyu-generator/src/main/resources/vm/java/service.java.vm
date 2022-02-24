@@ -1,61 +1,24 @@
 package ${packageName}.service;
 
-import java.util.List;
-import ${packageName}.domain.${ClassName};
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
+import $!{packageName}.entity.$!{className};
+import $!{packageName}.query$!{className}Query;
+
+
 
 /**
- * ${functionName}Service接口
- * 
- * @author ${author}
- * @date ${datetime}
+ * @author $author
  */
-public interface I${ClassName}Service 
-{
-    /**
-     * 查询${functionName}
-     * 
-     * @param ${pkColumn.javaField} ${functionName}主键
-     * @return ${functionName}
-     */
-    public ${ClassName} select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaType} ${pkColumn.javaField});
+public interface ${className}Service extends IService<$!{className}>{
 
-    /**
-     * 查询${functionName}列表
-     * 
-     * @param ${className} ${functionName}
-     * @return ${functionName}集合
-     */
-    public List<${ClassName}> select${ClassName}List(${ClassName} ${className});
-
-    /**
-     * 新增${functionName}
-     * 
-     * @param ${className} ${functionName}
-     * @return 结果
-     */
-    public int insert${ClassName}(${ClassName} ${className});
-
-    /**
-     * 修改${functionName}
-     * 
-     * @param ${className} ${functionName}
-     * @return 结果
-     */
-    public int update${ClassName}(${ClassName} ${className});
-
-    /**
-     * 批量删除${functionName}
-     * 
-     * @param ${pkColumn.javaField}s 需要删除的${functionName}主键集合
-     * @return 结果
-     */
-    public int delete${ClassName}By${pkColumn.capJavaField}s(${pkColumn.javaType}[] ${pkColumn.javaField}s);
-
-    /**
-     * 删除${functionName}信息
-     * 
-     * @param ${pkColumn.javaField} ${functionName}主键
-     * @return 结果
-     */
-    public int delete${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaType} ${pkColumn.javaField});
+   /**
+   * ${tableComment}分页查询
+   * @param IPage<${className}  ${tableComment}
+   * @param ${className}Query
+   * @return IPage<${className}>
+   */
+   IPage<${className}> allPageQuery(IPage<${className}> iPage, ${className}Query ${lowerClassName}Query);
 }
