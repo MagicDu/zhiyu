@@ -9,37 +9,60 @@ import com.zhiyu.common.utils.ApiResult;
 import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import ${packageName}.${className};
-import ${packageName}.service.${className}Service;
-import ${packageName}.entity.query.${className}Query;
+import ${packageName}.entity.${ClassName};
+import ${packageName}.service.${ClassName}Service;
+import ${packageName}.entity.query.${ClassName}Query;
 
 
 /**
- * @author $author
+ * ${functionName}Controller
+ *
+ * @author ${author}
+ * @date ${datetime}
  */
 @RestController
-@RequestMapping("/${className}")
-public class $!{className}Controller{
+@RequestMapping("/${moduleName}/${businessName}")
+public class $!{ClassName}Controller{
 
 	 @Autowired
-	 ${className}Service  ${lowerClassName}Service;  //服务
+	 ${ClassName}Service  ${className}Service;  //服务
+
     /**
-    * ${tableComment}分页查询
+    * 查询${functionName}列表
     * @param ${className}Query  查询${tableComment}
     * @return ApiResult<>
     */
-	@RequestMapping("/allPageQuery")
-	@ApiOperation(value = "/allPageQuery", notes = "${className}初始化查询接口", produces = "application/json")
-	@ResponseBody
-    public ApiResult<IPage<${className}>> allPageQuery(${className}Query ${lowerClassName}Query){
-		IPage<${className}> iPage = new Page<>( ${lowerClassName}Query.getCurrent() ,${lowerClassName}Query.getSize());
+
+	@PostMapping("/list")
+	@ApiOperation(value = "/list", notes = "${functionName}分页查询查询接口", produces = "application/json")
+    public ApiResult<IPage<${ClassName}>> allPageQuery(${ClassName}Query ${businessName}Query){
+		IPage<${ClassName}> iPage = new Page<>( ${businessName}Query.getCurrent() ,${businessName}Query.getSize());
 		try {
-		    //根据需求修改文件${className}Mapper.xml
-            iPage=  ${lowerClassName}Service.allPageQuery(iPage,${lowerClassName}Query);
+		    //根据需求修改文件${ClassName}Mapper.xml
+            iPage=  ${className}Service.pageQuery(iPage,${businessName}Query);
         } catch (Exception e) {
             e.printStackTrace();
         }   
         return new ApiResult<>(iPage);   
     }
-    
+
+
+    @PostMapping("/saveOrUpdate")
+    public ApiResult<Boolean> saveOrUpdate(@RequestBody ClassName className){
+        return new ApiResult<>(${className}Service.saveOrUpdate(sysDept));
+    }
+
+
+    @GetMapping("/{id}")
+    public ApiResult<ClassName> getInfo(@PathVariable(value = "id") Long id){
+        return new ApiResult<>(${className}Service.getById(id));
+    }
+
+
+    @DeleteMapping("/remove")
+    public ApiResult<Boolean> remove(@RequestBody List<Long> ids){
+        return ${className}Service.removeByIds(ids);
+    }
+
+
 }

@@ -1,6 +1,6 @@
-package ${packageName}.query;
+package ${packageName}.entity.query;
 
-import ${packageName}.${className};
+import ${packageName}.${ClassName};
 import com.zhiyu.common.core.entity.BasePageInfo;
 import lombok.Data;
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.Date;
  * @author $author
  */
 @Data
-public class ${className}Query extends  BasePageInfo<${className}> {
+public class ${ClassName}Query extends  BasePageInfo<${ClassName}> {
 
     #foreach ($column in ${columns})
     /**

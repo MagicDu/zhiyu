@@ -11,7 +11,6 @@ import com.zhiyu.gen.service.IGenTableColumnService;
 import com.zhiyu.gen.service.IGenTableService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

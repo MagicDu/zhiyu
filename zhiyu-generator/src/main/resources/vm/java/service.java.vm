@@ -10,15 +10,18 @@ import $!{packageName}.query$!{className}Query;
 
 
 /**
- * @author $author
+ * ${functionName}Service接口
+ *
+ * @author ${author}
+ * @date ${datetime}
  */
-public interface ${className}Service extends IService<$!{className}>{
+public interface ${ClassName}Service extends IService<$!{ClassName}>{
 
    /**
    * ${tableComment}分页查询
-   * @param IPage<${className}  ${tableComment}
-   * @param ${className}Query
-   * @return IPage<${className}>
+   * @param IPage<${ClassName}  ${tableComment}
+   * @param ${ClassName}Query
+   * @return IPage<${ClassName}>
    */
-   IPage<${className}> allPageQuery(IPage<${className}> iPage, ${className}Query ${lowerClassName}Query);
+   IPage<${ClassName}> pageQuery(IPage<${ClassName}> iPage, ${ClassName}Query ${className}Query);
 }

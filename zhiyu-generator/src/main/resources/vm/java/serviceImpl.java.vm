@@ -1,10 +1,10 @@
 package ${packageName}.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import ${packageName}.mapper.${className}Mapper;
-import ${packageName}.entity.${className};
-import ${packageName}.service.${className}Service;
-import ${packageName}.entity.query.${className}Query;
+import ${packageName}.mapper.${ClassName}Mapper;
+import ${packageName}.entity.${ClassName};
+import ${packageName}.service.${ClassName}Service;
+import ${packageName}.entity.query.${ClassName}Query;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,28 +14,25 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 
 /**
- * @author $author
+ * ${functionName}Service业务层处理
+ *
+ * @author ${author}
+ * @date ${datetime}
  */
 @Service
-public class ${className}ServiceImpl extends ServiceImpl<$!{className}Mapper, $!{className}> implements $!{className}Service  {
+public class ${ClassName}ServiceImpl extends ServiceImpl<$!{ClassName}Mapper, $!{ClassName}> implements $!{ClassName}Service  {
 
   @Autowired 
-  private ${className}Mapper ${lowerClassName}Mapper;
+  private ${ClassName}Mapper ${className}Mapper;
 
     /**
    * ${tableComment}分页查询
-   * @param Page<${className}> ${tableComment}
-   * @param ${className}Query
-   * @return IPage<${className}>
+   * @param Page<${ClassName}> ${tableComment}
+   * @param ${ClassName}Query
+   * @return IPage<${ClassName}>
    */
     @Override
-    public IPage<${className}> allPageQuery(IPage<${className}> iPage, ${className}Query query) {
-    	try {
-      		List<${className}> pageList = ${lowerClassName}Mapper.allPageQuery(iPage,query);
-      		iPage.setRecords(pageList);
-    	} catch (Exception e) {
-            e.printStackTrace(); 
-      	}   
-      return iPage;
+    public IPage<${ClassName}> pageQuery(IPage<${ClassName}> iPage, ${ClassName}Query query) {
+      return ${className}Mapper.pageQuery(iPage,query);;
     }
 }
