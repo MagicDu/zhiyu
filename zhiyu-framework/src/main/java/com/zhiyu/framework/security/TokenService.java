@@ -5,7 +5,7 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.zhiyu.framework.constants.Constants;
-import com.zhiyu.framework.redis.RedisCache;
+import com.zhiyu.common.core.redis.RedisCache;
 import com.zhiyu.framework.utils.ServletUtils;
 import com.zhiyu.system.entity.LoginUser;
 import eu.bitwalker.useragentutils.UserAgent;
