@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(exclude = DruidDataSourceAutoConfigure.class)
 @MapperScan({"com.zhiyu.**.mapper"})
+
 public class ZhiYuAdminApplication {
 
     public static void main(String[] args) {

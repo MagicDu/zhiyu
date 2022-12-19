@@ -129,6 +129,17 @@
             <version>${hutool.version}</version>
         </dependency>
         <dependency>
+            <groupId>top.jfunc.common</groupId>
+            <artifactId>common-crypto</artifactId>
+            <version>1.8.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>top.lrshuai.encryption</groupId>
+            <artifactId>encryption-tools</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
