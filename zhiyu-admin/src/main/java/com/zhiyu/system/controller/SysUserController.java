@@ -45,6 +45,7 @@ public class SysUserController {
     }
 
     @GetMapping(value = { "/", "/{userId}" })
+    @EncryptResponse
     public ApiResult<Map<String,Object>> getInfo(@PathVariable(value = "userId", required = false) Long userId){
         Map<String,Object> result=new HashMap<>();
         List<SysRole> roles = roleService.list();

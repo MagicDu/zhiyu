@@ -13,7 +13,7 @@ public class ApiResult<T> implements Serializable {
     private T data;
     private Integer code = ResponseCodeEnum.SUCCESS.getCode();
     private String message = ResponseCodeEnum.SUCCESS.getMessage();
-    private String key;
+    //private String key;
     public ApiResult() {
     	
     }
@@ -46,10 +46,10 @@ public class ApiResult<T> implements Serializable {
         this.code = code;
         this.message = message;
     }
-    public ApiResult(T data, Integer code , String message,String key) {
-        this.data = data;
-        this.code = code;
-        this.message = message;
-        this.key=key;
-    }
+//    public ApiResult(T data, Integer code , String message,String key) {
+//        this.data = data;
+//        this.code = code;
+//        this.message = message;
+//        this.key=key;
+//    }
 }

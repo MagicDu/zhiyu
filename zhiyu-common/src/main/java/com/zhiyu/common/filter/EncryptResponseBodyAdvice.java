@@ -49,13 +49,14 @@ public class EncryptResponseBodyAdvice implements ResponseBodyAdvice<Object> {
         try {
             // 1、随机aes密钥
             String randomAesKey = AesUtils.generateSecret(256);
-
             // 4、aes加密数据体
             String aesEncode = AesUtils.encodeBase64(xx, randomAesKey, keyConfig.getAesIv().getBytes(), AesUtils.CIPHER_MODE_CBC_PKCS5PADDING);
             // 5、重新设置数据体
             responseMsg.setData(aesEncode);
             // 6、使用前端的rsa公钥加密 aes密钥 返回给前端
-            responseMsg.setKey(RsaUtils.encodeBase64PublicKey(keyConfig.getFrontRsaPublicKey(), randomAesKey));
+            String key=RsaUtils.encodeBase64PublicKey(keyConfig.getFrontRsaPublicKey(), randomAesKey);
+            response.getHeaders().set("x-magic-header",key);
+            //responseMsg.setKey(key);
         }catch (Exception e){
             responseMsg.setData("数据加密失败");
         }
