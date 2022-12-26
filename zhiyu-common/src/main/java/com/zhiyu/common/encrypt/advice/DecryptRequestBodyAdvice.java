@@ -1,7 +1,8 @@
-package com.zhiyu.common.filter;
+package com.zhiyu.common.encrypt.advice;
 
-import com.zhiyu.common.annotaion.DecryptRequest;
-import com.zhiyu.common.utils.Utils;
+
+import com.zhiyu.common.encrypt.config.KeyConfig;
+import com.zhiyu.common.encrypt.utils.NeedCrypto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -14,6 +15,9 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdvice;
 import java.io.IOException;
 import java.lang.reflect.Type;
 
+/**
+ * decrypt request data  advice
+ */
 @ControllerAdvice
 @ConditionalOnProperty(prefix = "spring.crypto.request.decrypt", name = "enabled" , havingValue = "true", matchIfMissing = true)
 public class DecryptRequestBodyAdvice implements RequestBodyAdvice {
@@ -21,19 +25,14 @@ public class DecryptRequestBodyAdvice implements RequestBodyAdvice {
     private KeyConfig keyConfig;
 
     /**
-     * 是否需要解码
+     * needed decrypt or not
      */
     private boolean isDecode;
 
     @Override
     public boolean supports(MethodParameter methodParameter, Type type, Class<? extends HttpMessageConverter<?>> aClass) {
-        // 方法或类上有注解
-        if (Utils.hasMethodAnnotation(methodParameter,new Class[]{DecryptRequest.class})) {
-            isDecode=true;
-            // 这里返回true 才支持
-            return true;
-        }
-        return false;
+        isDecode= NeedCrypto.needDecrypt(methodParameter);
+        return isDecode;
     }
 
     @Override
@@ -46,13 +45,11 @@ public class DecryptRequestBodyAdvice implements RequestBodyAdvice {
 
     @Override
     public Object afterBodyRead(Object obj, HttpInputMessage httpInputMessage, MethodParameter methodParameter, Type type, Class<? extends HttpMessageConverter<?>> aClass) {
-        // 这里就是已经读取到body了，obj就是
         return obj;
     }
 
     @Override
     public Object handleEmptyBody(Object obj, HttpInputMessage httpInputMessage, MethodParameter methodParameter, Type type, Class<? extends HttpMessageConverter<?>> aClass) {
-        // body 为空的时候调用
         return obj;
     }
 }

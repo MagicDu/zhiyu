@@ -2,6 +2,8 @@ package com.zhiyu.system.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zhiyu.common.core.entity.SysRole;
+import com.zhiyu.common.encrypt.annotaion.DecryptRequest;
+import com.zhiyu.common.encrypt.annotaion.EncryptResponse;
 import com.zhiyu.common.utils.ApiResult;
 import com.zhiyu.system.entity.query.SysRoleQuery;
 import com.zhiyu.system.service.SysRoleService;
@@ -17,6 +19,8 @@ public class SysRoleController {
     @Autowired
     private SysRoleService sysRoleService;
     @PostMapping("/list")
+    @EncryptResponse
+    @DecryptRequest
     public ApiResult<IPage<SysRole>> list(@RequestBody SysRoleQuery query){
         return new ApiResult<>(sysRoleService.pageList(query));
     }

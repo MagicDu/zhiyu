@@ -1,15 +1,23 @@
-package com.zhiyu.common.utils;
+package com.zhiyu.common.encrypt.utils;
 
-import com.zhiyu.common.annotaion.DecryptRequest;
-import com.zhiyu.common.annotaion.EncryptResponse;
+
+
+import com.zhiyu.common.encrypt.annotaion.DecryptRequest;
+import com.zhiyu.common.encrypt.annotaion.EncryptResponse;
 import org.springframework.core.MethodParameter;
 
+/**
+ * is response data need encrypted or not
+ * is request data need decrypted or not
+ * @author dzq
+ */
 public class NeedCrypto {
     private NeedCrypto(){}
+
     /**
-     * 是否需要对结果加密
-     * 1.类上标注或者方法上标注,并且都为true
-     * 2.有一个标注为false就不需要加密
+     * response data need encrypted or not by annotation @EncryptResponse
+     * @param returnType
+     * @return
      */
    public static boolean needEncrypt(MethodParameter returnType) {
         boolean encrypt = false;
@@ -17,23 +25,23 @@ public class NeedCrypto {
         boolean methodPresentAnno = returnType.getMethod().isAnnotationPresent(EncryptResponse.class);
 
         if(classPresentAnno){
-            //类上标注的是否需要加密
+            // class annotation judge
             encrypt = returnType.getContainingClass().getAnnotation(EncryptResponse.class).value();
-            //类不加密，所有都不加密
             if(!encrypt){
                 return false;
             }
         }
         if(methodPresentAnno){
-            //方法上标注的是否需要加密
+            //method annotation judge
             encrypt = returnType.getMethod().getAnnotation(EncryptResponse.class).value();
         }
         return encrypt;
     }
+
     /**
-     * 是否需要参数解密
-     * 1.类上标注或者方法上标注,并且都为true
-     * 2.有一个标注为false就不需要解密
+     * request data need decrypted or not by annotation @DecryptRequest
+     * @param parameter
+     * @return
      */
     public static boolean needDecrypt(MethodParameter parameter) {
         boolean encrypt = false;
@@ -41,15 +49,14 @@ public class NeedCrypto {
         boolean methodPresentAnno = parameter.getMethod().isAnnotationPresent(DecryptRequest.class);
 
         if(classPresentAnno){
-            //类上标注的是否需要解密
+            // class annotation judge
             encrypt = parameter.getContainingClass().getAnnotation(DecryptRequest.class).value();
-            //类不加密，所有都不加密
             if(!encrypt){
                 return false;
             }
         }
         if(methodPresentAnno){
-            //方法上标注的是否需要解密
+            //method annotation judge
             encrypt = parameter.getMethod().getAnnotation(DecryptRequest.class).value();
         }
         return encrypt;

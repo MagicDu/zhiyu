@@ -2,9 +2,10 @@ package com.zhiyu.system.controller;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.zhiyu.common.annotaion.EncryptResponse;
 import com.zhiyu.common.core.entity.SysRole;
 import com.zhiyu.common.core.entity.SysUser;
+import com.zhiyu.common.encrypt.annotaion.DecryptRequest;
+import com.zhiyu.common.encrypt.annotaion.EncryptResponse;
 import com.zhiyu.common.utils.ApiResult;
 import com.zhiyu.framework.security.SecurityUtils;
 import com.zhiyu.system.entity.query.SysUserQuery;
@@ -39,6 +40,7 @@ public class SysUserController {
     }
 
     @PostMapping("/list")
+    @DecryptRequest
     @EncryptResponse
     public ApiResult<IPage<SysUser>> list(@RequestBody SysUserQuery query){
         return  new ApiResult<>(userService.pageQuery(query));

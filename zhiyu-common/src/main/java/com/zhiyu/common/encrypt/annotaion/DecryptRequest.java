@@ -1,13 +1,13 @@
-package com.zhiyu.common.annotaion;
+package com.zhiyu.common.encrypt.annotaion;
 
 import java.lang.annotation.*;
 
 @Target({ElementType.METHOD , ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface EncryptResponse {
+public @interface DecryptRequest {
     /**
-     * 是否对结果加密
+     * 是否对body进行解密
      */
     boolean value() default true;
 }

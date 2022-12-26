@@ -1,12 +1,12 @@
-package com.zhiyu.common.utils;
+package com.zhiyu.common.encrypt.utils;
 
 import org.springframework.core.MethodParameter;
 
 import java.lang.annotation.Annotation;
 
 /**
- * @author rstyro
- * @since 2020-10-20
+ * @author dzq
+ * @since 2022/12/26
  */
 public class Utils {
 
