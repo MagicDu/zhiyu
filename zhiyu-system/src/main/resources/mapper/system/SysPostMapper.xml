@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhiyu.system.mapper.SysPostMapper">
+
+    <select id="pageQuery" resultType="com.zhiyu.common.core.entity.SysPost">
+        select * from sys_post
+        <where>
+            <if test="query.postName != null and query.postName != ''">
+                and post_name like concat('%',#{postName},'%')
+            </if>
+            <if test="query.postCode != null and query.postCode != ''">
+                and post_code like concat('%',#{postCode},'%')
+            </if>
+            <if test="query.status != null and query.status != ''">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+</mapper>
