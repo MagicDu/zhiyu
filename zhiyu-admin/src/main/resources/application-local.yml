@@ -31,15 +31,15 @@ spring:
       datasource:
         master:
           username: root
-          password: 940726
+          password: 123456
           driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
           url: jdbc:log4jdbc:mysql://localhost:3306/zhiyu?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
 
   redis:
     host: localhost
-    port: 26380
-    database: 0
-    password:
+    port: 6379
+    database: 10
+    password: typro12346789
     timeout: 5000
     jedis:
       pool:

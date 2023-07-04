@@ -7,6 +7,8 @@ spring:
     multipart:
       max-file-size: 500MB
       max-request-size: 500MB
+  session:
+    store-type: redis
 #mybatisPlus
 mybatis-plus:
   type-aliases-package: com.zhiyu.*.model.**,com.zhiyu.*.model

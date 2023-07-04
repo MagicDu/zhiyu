@@ -72,6 +72,22 @@ public class TokenService {
         return null;
     }
 
+    public LoginUser getLoginUser(String token) {
+        token=getToken(token);
+        if (StrUtil.isNotEmpty(token)) {
+            try {
+                Claims claims = parseToken(token);
+                String uuid = (String) claims.get(Constants.LOGIN_USER_KEY);
+                String userKey = getTokenKey(uuid);
+                LoginUser user = redisCache.getCacheObject(userKey);
+                return user;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     /**
      * 设置用户身份信息
      */
@@ -194,6 +210,13 @@ public class TokenService {
      */
     private String getToken(HttpServletRequest request) {
         String token = request.getHeader(header);
+        if (StrUtil.isNotEmpty(token) && token.startsWith(Constants.TOKEN_PREFIX)) {
+            token = token.replace(Constants.TOKEN_PREFIX, "");
+        }
+        return token;
+    }
+
+    private String getToken(String token) {
         if (StrUtil.isNotEmpty(token) && token.startsWith(Constants.TOKEN_PREFIX)) {
             token = token.replace(Constants.TOKEN_PREFIX, "");
         }

@@ -168,6 +168,11 @@
             <artifactId>oshi-core</artifactId>
             <version>${oshi.version}</version>
         </dependency>
+        <!-- session -->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
